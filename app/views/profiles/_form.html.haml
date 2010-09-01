@@ -1,14 +1,16 @@
-= simple_form_for @user, :url => profile_path do |f|
-  - unless @user.errors.empty?
-    .errors
-      - @user.errors.full_messages.each do |err|
-        %p= err
+= simple_form_for @user, :url => profile_path, :html => {:class => 'bp'} do |f|
+  - if @user.errors.any?
+    #error_explanation
+      .errors
+        - @user.errors.full_messages.each do |err|
+          %p.error= err
+  %fieldset    
+    .inputs
+      = f.input :email
+      = f.input :full_name
   
-  = f.input :email
-  = f.input :full_name
+      = f.input :password
+      = f.input :password_confirmation
   
-  = f.input :password
-  = f.input :password_confirmation
-  
-  
-  = f.submit "Save"
+    .buttons
+      = f.submit "Save"
