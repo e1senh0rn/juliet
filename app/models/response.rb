@@ -1,5 +1,5 @@
 class Response < ActiveRecord::Base
-  belongs_to :website
+  belongs_to :website, :touch => true
   
   before_create :set_is_good
   
