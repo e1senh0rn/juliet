@@ -1,7 +1,7 @@
 class Monitor::WebsiteLoop < Loops::Base
   def run
     
-    check_time = @config[:check_time].to_i || 30
+    check_time = (@config[:check_time] || 30).to_i
     
     sites = Website.enabled.where(:updated_at.lte => check_time.seconds.ago)
     
