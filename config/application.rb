@@ -38,5 +38,24 @@ module Juliet
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    config.action_mailer.delivery_method = :sendmail
+    # Defaults to:
+    # config.action_mailer.sendmail_settings = {
+    #   :location => '/usr/sbin/sendmail',
+    #   :arguments => '-i -t'
+    # }
+    
+    ## Sample SMTP configuration
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.smtp_settings = {
+    #   :address              => "smtp.gmail.com",
+    #   :port                 => 587,
+    #   :domain               => 'example.org',
+    #   :user_name            => '<username>',
+    #   :password             => '<password>',
+    #   :authentication       => 'plain',
+    #   :enable_starttls_auto => true
+    # }
   end
 end
