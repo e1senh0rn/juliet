@@ -1,0 +1,14 @@
+= simple_form_for @user, :url => profile_path do |f|
+  - unless @user.errors.empty?
+    .errors
+      - @user.errors.full_messages.each do |err|
+        %p= err
+  
+  = f.input :email
+  = f.input :full_name
+  
+  = f.input :password
+  = f.input :password_confirmation
+  
+  
+  = f.submit "Save"

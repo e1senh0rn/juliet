@@ -1,0 +1,16 @@
+= simple_form_for resource, :html => {:class => 'bp'} do |f|
+  - if resource.errors.any?
+    #error_explanation
+      .errors
+        - resource.errors.full_messages.each do |err|
+          %p.error= err
+  %fieldset    
+    .inputs
+      = f.input :name
+      = f.input :url, :as => :string
+      = f.input :ttl
+      = f.input :enabled
+      = f.association :user, :collection => User.all(:order => 'full_name'), :prompt => "Choose an Owner"
+  
+    .buttons
+      = f.submit "Add"

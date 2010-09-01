@@ -1,0 +1,16 @@
+%h2 User
+
+.name
+  %h3 Name
+  %h4= @user.full_name
+
+.email
+  %h3 Email
+  %h4= @user.email
+
+.role
+  %h3 Role
+  %h4= @user.role
+
+= link_to 'Edit', edit_user_path(@user)
+= link_to 'Back', users_path

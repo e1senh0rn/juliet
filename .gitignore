@@ -1,0 +1,10 @@
+.bundle
+db/*.sqlite3
+log/*.log
+log/loops/*.log
+tmp/**/*
+.DS_Store
+db/schema.rb
+config/database.yml
+public/stylesheets/*.css
+public/stylesheets/compiled/*.css

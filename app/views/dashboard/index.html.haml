@@ -1,0 +1,47 @@
+%h2 Dashboard
+
+.column
+  .column.span-16
+    %h2= link_to "Last issues", responses_path
+    
+    %table
+      %thead
+        %th Site
+        %th Code
+        %th Timed out
+        %th Occurred at
+      - @issues.each do |issue|
+        %tr
+          %td= link_to issue.website.name, website_path(issue.website)
+          %td= issue.code
+          %td= issue.timed_out? ? 'true' : 'false'
+          %td= issue.created_at.to_s(:long)
+    
+    %h2= link_to "Last added websites", websites_path
+    %table
+      %thead
+        %th Name
+        %th Enabled
+        %th Url
+        %th Uptime
+        %th Added at
+        %th Updated at
+      - @websites.each do |site|
+        %tr
+          %td= link_to site.name, website_path(site)
+          %td= site.enabled? ? 'true' : 'false'
+          %td= site.url
+          %td= number_to_percentage(site.health, :precision => 2)
+          %td= site.created_at.to_s(:long)
+          %td= site.updated_at.to_s(:long)
+    
+  .column.span-7.last
+    %h2= link_to "Profile", profile_path
+    
+    .name
+      %h3 Name
+      %h4= current_user.full_name
+
+    .email
+      %h3 Email
+      %h4= current_user.email

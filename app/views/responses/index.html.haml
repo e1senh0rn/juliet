@@ -1,0 +1,20 @@
+%h2 Listing responses
+
+= form_tag responses_path, :method => :get do |f|
+  = select_tag "website_id", options_from_collection_for_select(@websites, "id", "name", params[:website_id]), :include_blank => true
+  = submit_tag "Show"
+
+%table
+  %thead
+    %tr
+      %th Code
+      %th Timed out
+      %th Website
+      %th Time
+
+  - collection.each do |item|
+    %tr{:class => item.is_good? ? "good" : "bad"}
+      %td= item.code
+      %td= item.timed_out?
+      %td= item.website.name
+      %td= item.created_at.to_s(:long)

@@ -1,0 +1,60 @@
+// Import the non-default scaffolding module to help us get started.
+@import "blueprint/scaffolding";
+
+// This configuration will only apply the
+// blueprint styles to pages with a body class of "bp"
+// This makes it easier to have pages without blueprint styles
+// when you're using a single/combined stylesheet.
+
+body.bp {
+  @include blueprint-typography(true);
+  @include blueprint-utilities;
+  @include blueprint-debug;
+  @include blueprint-interaction;
+  @include blueprint-grid;
+  
+  .container {
+    @include container;
+  }
+  .header, .footer {
+    @include column($blueprint-grid-columns);
+  }
+  .sidebar {
+    // One third of the grid columns, rounding down. With 24 cols, this is 8.
+    $sidebar-columns: floor($blueprint-grid-columns / 3);
+    @include column($sidebar-columns);
+    
+  }
+  .content {
+    // Two thirds of the grid columns, rounding up.
+    // With 24 cols, this is 16.
+    //$content-columns: ceil(2 * $blueprint-grid-columns / 3);
+    $content-columns: $blueprint-grid-columns;
+    // true means it's the last column in the row
+    @include column($content-columns, true);
+  }
+  
+  .alert {
+    @include error;
+  }
+  
+  .my a {
+    margin-left: 10px;
+  }
+}
+
+// Remove the scaffolding when you're ready to start doing visual design.
+// Or leave it in if you're happy with how blueprint looks out-of-the-box
+@include blueprint-scaffolding("body.bp");
+
+#navigation {
+  list-style:none;
+  position: relative;
+  li {
+    float:left;
+    margin-right:1em;
+    a {
+      font-size: large;
+    }
+  }
+}

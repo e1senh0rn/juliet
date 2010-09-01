@@ -1,0 +1,44 @@
+%h2 User
+
+.column
+  .column.span-16
+    .name
+      %h3 Name
+      %h4= resource.name
+
+    .url
+      %h3 URL
+      %h4= link_to resource.url, resource.url
+      
+    .uptime
+      %h3 Uptime
+      %h4= number_to_percentage(resource.health, :precision => 2)
+      
+    .responses
+      %table
+        %thead
+          %th Code
+          %th Timed out
+          %th Occurred at
+        - resource.responses.limit(20).each do |response|
+          %tr{:class => response.is_good? ? "good" : "bad"}
+            %td= response.code
+            %td= response.timed_out? ? 'true' : 'false'
+            %td= response.created_at.to_s(:long)
+            
+  .column.span-7
+    .ttl
+      %h3 TTL
+      %h4= resource.ttl
+
+    .enabled
+      %h3 Status
+      %h4= resource.enabled? ? 'enabled' : 'disabled'
+
+    .owner
+      %h3 Owner
+      %h4= resource.user.full_name
+
+
+= link_to 'Edit', edit_website_path(resource)
+= link_to 'Back', websites_path

@@ -1,0 +1,19 @@
+= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'bp'} do |f|
+  - if resource.errors.any?
+    #error_explanation
+      .errors
+        - resource.errors.full_messages.each do |err|
+          %p.error= err
+  %fieldset
+    %legend Sign in
+    
+    .inputs
+      = f.input :email
+      = f.input :password
+  
+      %p.input.checkbox
+        = f.check_box :remember_me
+        = f.label 'Remember me'
+  
+    .buttons
+      = f.submit "Sign in"

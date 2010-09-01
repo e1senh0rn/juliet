@@ -1,0 +1,17 @@
+= simple_form_for @user, :html => {:class => 'bp'} do |f|
+  - if @user.errors.any?
+    #error_explanation
+      .errors
+        - @user.errors.full_messages.each do |err|
+          %p.error= err
+  %fieldset    
+    .inputs
+      = f.input :email
+      %p.input.radio
+        = f.collection_radio :role, User::ROLES.map{|k,v| [k,v]}, :first, :last
+      = f.input :full_name
+      = f.input :password
+      = f.input :password_confirmation
+  
+    .buttons
+      = f.submit "Add"

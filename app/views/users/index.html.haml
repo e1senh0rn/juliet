@@ -1,0 +1,22 @@
+%h2 Listing users
+
+%table
+  %thead
+    %tr
+      %th Actions
+      %th Name
+      %th Role
+      %th Email
+
+  - @users.each do |user|
+    %tr
+      %td
+        = link_to 'Edit', edit_user_path(user)
+        = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to user.full_name, user
+      %td= user.role_label
+      %td= user.email
+
+%br
+
+= link_to 'New user', new_user_path

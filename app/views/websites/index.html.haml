@@ -1,0 +1,27 @@
+%h1 Listing websites
+
+%table
+  %thead
+    %th Actions
+    %th Name
+    %th Enabled
+    %th Url
+    %th Uptime
+    %th Owner
+    %th Added at
+    %th Updated at
+  - @websites.each do |site|
+    %tr
+      %td
+        = link_to 'Edit', edit_website_path(site)
+        = link_to 'Destroy', site, :method => :delete, :confirm => 'Are you sure?'
+      %td= link_to site.name, website_path(site)
+      %td= site.enabled? ? 'true' : 'false'
+      %td= site.url
+      %td= number_to_percentage(site.health, :precision => 2)
+      %td= link_to site.user.full_name, site.user
+      %td= site.created_at.to_s(:long)
+      %td= site.updated_at.to_s(:long)
+
+%p
+  = link_to 'Add', new_website_path
