@@ -8,6 +8,8 @@ class Response < ActiveRecord::Base
   scope :good, where(:is_good => true)
   scope :bad, where(:is_good => false)
   
+  default_scope order(:created_at.desc)
+  
   def self.is_good?(code)
     GOOD.include? code
   end
