@@ -8,9 +8,12 @@
     .inputs
       = f.input :name
       = f.input :url, :as => :string
-      = f.input :ttl
+      = f.input :ttl, :default => 10
       = f.input :enabled
-      = f.association :user, :collection => User.all(:order => 'full_name'), :prompt => "Choose an Owner"
+      - if current_user.admin?
+        = f.association :user, :collection => User.all(:order => 'full_name'), :prompt => "Choose an Owner"
+      - else
+        = f.association :user, :as => :hidden, :value => current_user
   
     .buttons
       = f.submit "Add"

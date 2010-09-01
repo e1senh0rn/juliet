@@ -7,5 +7,9 @@ class WebsitesController < ApplicationController
     super
   end
   
-  
+  def new
+    @website = Website.new :user => current_user, :ttl => 10
+    super
+  end
+    
 end
