@@ -1,13 +1,16 @@
 class Notifier < ActionMailer::Base
   default :from => "noreply@daemons.org.ua"
   
-  def signup_notification(recipient)
-    @account = recipient
-
-    # attachments['an-image.jp'] = File.read("an-image.jpg")
-    # attachments['terms.pdf'] = {:content => generate_your_pdf_here() }
-
-    mail(:to => recipient.email_address_with_name,
-         :subject => "New account information")
+  def bad_response(website, code)
+    @website = website
+    @email = website.user.email
+    mail :to => @email, :subject => "Juliet WARN: #{website.name} returned #{code}"
   end
+  
+  def timed_out(website)
+    @website = website
+    @email = website.user.email
+    mail :to => @email, :subject => "Juliet ERR: #{website.name} timed out"
+  end
+    
 end
