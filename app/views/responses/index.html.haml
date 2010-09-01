@@ -1,6 +1,6 @@
 %h2 Listing responses
 
-= form_tag responses_path, :method => :get do |f|
+= form_tag responses_path, :method => :get do
   = select_tag "website_id", options_from_collection_for_select(@websites, "id", "name", params[:website_id]), :include_blank => true
   = submit_tag "Show"
 
