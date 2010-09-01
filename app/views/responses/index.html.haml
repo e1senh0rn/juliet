@@ -1,8 +1,12 @@
 %h2 Listing responses
 
-= form_tag responses_path, :method => :get do
-  = select_tag "website_id", options_from_collection_for_select(@websites, "id", "name", params[:website_id]), :include_blank => true
-  = submit_tag "Show"
+.column
+  .column.span-4
+    = form_tag responses_path, :method => :get do
+      = select_tag "website_id", options_from_collection_for_select(@websites, "id", "name", params[:website_id]), :include_blank => true
+      = submit_tag "Show"
+  .column.last
+    = will_paginate(collection)
 
 %table
   %thead
@@ -18,3 +22,5 @@
       %td= item.timed_out?
       %td= item.website.name
       %td= item.created_at.to_s(:long)
+
+= will_paginate(collection)

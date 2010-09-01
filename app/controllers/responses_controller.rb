@@ -8,9 +8,9 @@ class ResponsesController < ApplicationController
     website_ids = @websites.map{ |s| s.id }
     unless params[:website_id].blank?
       raise CanCan::AccessDenied unless website_ids.include? params[:website_id].to_i
-      @responses = Response.includes(:website).where(:website_id => params[:website_id])
+      @responses = Response.includes(:website).where(:website_id => params[:website_id]).paginate(:page => params[:page])
     else
-      @responses = Response.includes(:website).where(:website_id => website_ids)
+      @responses = Response.includes(:website).where(:website_id => website_ids).paginate(:page => params[:page])
     end
     super
   end
