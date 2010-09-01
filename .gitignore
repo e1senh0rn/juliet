@@ -8,3 +8,4 @@ db/schema.rb
 config/database.yml
 public/stylesheets/*.css
 public/stylesheets/compiled/*.css
+config/unicorn.conf.rb

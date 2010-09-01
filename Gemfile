@@ -31,6 +31,8 @@ gem "compass", ">= 0.10.5"
 gem "meta_where"
 gem 'inherited_resources', '1.1.2'
 gem 'cancan'
+gem 'unicorn'
+gem "will_paginate", "~> 3.0.pre2"
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
