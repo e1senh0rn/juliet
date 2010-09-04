@@ -21,7 +21,7 @@ class Monitor::WebsiteLoop < Loops::Base
 
           unless response.is_good?
             logger.warn "HTTP code isn't right (#{code})! Site: #{site.name}"
-            Notifier.bad_response site, code
+            Notifier.bad_response(site, code).deliver
           end
           
           pending -= 1
@@ -33,7 +33,7 @@ class Monitor::WebsiteLoop < Loops::Base
           
           site.responses.create! :timed_out => true
           
-          Notifier.timed_out site
+          Notifier.timed_out(site).deliver
           
           pending -= 1
           EM.stop if pending < 1
