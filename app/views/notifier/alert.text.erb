@@ -1,0 +1,14 @@
+                  WARNING
+===============================================
+
+Website: <%= @website.name %>
+Last responses:
+
+<% @website.responses.limit(5).each do |response| -%>
+  Time: <%= response.created_at.to_s(:long) %>
+  Status: <%= response.is_good? ? 'Good' : 'Bad' %>
+  <% unless response.is_good? -%>
+    Reason: <%= response.code.nil? ? 'Timeout' : response.code %>
+  <% end %>
+  
+<% end %>
