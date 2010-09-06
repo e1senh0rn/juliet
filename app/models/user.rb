@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :websites, :dependent => :destroy
   has_many :responses, :through => :websites
   
+  has_many :addresses
+  
   ROLES = { :admin => "Admin", :user => "User" }
   
   ROLES.each do |value, _|
