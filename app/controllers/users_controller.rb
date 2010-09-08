@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     params[:user].delete(:password) if params[:user] && params[:user][:password].blank?
     @user = User.find params[:id]
     @user.update_attributes(params[:user])
-    respond_with @user, :location => backend_users_path
+    respond_with @user, :location => users_path
   end
 
   def destroy
