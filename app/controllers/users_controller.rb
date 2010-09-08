@@ -30,7 +30,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    params[:user].delete(:password) if params[:user] && params[:user][:password].blank?
+    if params[:user] && params[:user][:password].blank?
+      params[:user].delete(:password) 
+      params[:user].delete(:password_confirmation)
+    end
     @user = User.find params[:id]
     @user.update_attributes(params[:user])
     respond_with @user, :location => users_path
